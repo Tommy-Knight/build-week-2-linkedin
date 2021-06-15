@@ -17,7 +17,7 @@ class Home extends Component {
     const token = localStorage.getItem('token');
     this.setState({ isLoading: true });
     const resp = await fetch(
-      `${process.env.REACT_APP_API_URL}/api/profile/${personToFetch}`,
+      `${process.env.REACT_APP_API_URL}/profile/1`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

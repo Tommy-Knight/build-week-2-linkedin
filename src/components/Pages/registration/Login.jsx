@@ -22,7 +22,7 @@ class Login extends Component {
     try {
       this.setState({ loading: true });
       const resp = await fetch(
-        `${process.env.REACT_APP_API_URL}/api/auth/login`,
+        `${process.env.REACT_APP_API_URL}/user`,
         {
           method: 'POST',
           headers: {
@@ -33,7 +33,8 @@ class Login extends Component {
             password: this.state.password,
           }),
         }
-      );
+      )
+      console.log(resp)
       const data = await resp.json();
       if (resp.ok) {
         localStorage.setItem('token', data.token);

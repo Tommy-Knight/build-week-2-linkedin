@@ -23,7 +23,7 @@ export default class Register extends Component {
       this.setState({ loading: true });
 
       const resp = await fetch(
-        `${process.env.REACT_APP_API_URL}/api/auth/register`,
+        `${process.env.REACT_APP_API_URL}/user`,
         {
           method: 'POST',
           headers: {

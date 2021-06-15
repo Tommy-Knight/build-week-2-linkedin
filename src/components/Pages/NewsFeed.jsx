@@ -15,7 +15,7 @@ export default class NewsFeed extends Component {
   getPosts = async () => {
     this.setState({ isLoading: true });
     try {
-      const resp = await fetch(`${process.env.REACT_APP_API_URL}/api/posts`);
+      const resp = await fetch(`${process.env.REACT_APP_API_URL}/posts`);
       const posts = await resp.json();
 
       console.log(posts);
@@ -30,7 +30,7 @@ export default class NewsFeed extends Component {
   getUser = async () => {
     const token = localStorage.getItem('token');
     const resp = await fetch(
-      `${process.env.REACT_APP_API_URL}/api/profile/me`,
+      `${process.env.REACT_APP_API_URL}/profile/1`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

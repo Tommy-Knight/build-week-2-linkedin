@@ -17,7 +17,7 @@ export default class PeopleAlsoViewed extends Component {
   componentDidMount = async () => {
     this.setState({ isLoading: true });
     try {
-      const resp = await fetch(`${process.env.REACT_APP_API_URL}/api/profile`);
+      const resp = await fetch(`${process.env.REACT_APP_API_URL}/profile`);
 
       const users = await resp.json();
       // console.log(users);

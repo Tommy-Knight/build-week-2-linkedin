@@ -22,7 +22,7 @@ const SingleExperience = ({
 }) => {
   const handleDelete = async () => {
     const resp = await fetch(
-      `${process.env.REACT_APP_API_URL}/api/profile/${userID}/experiences/${_id}`,
+      `${process.env.REACT_APP_API_URL}/experiences`,
       {
         method: 'DELETE',
       }
