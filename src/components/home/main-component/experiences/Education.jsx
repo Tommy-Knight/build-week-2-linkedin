@@ -17,7 +17,7 @@ class EducationComponent extends React.Component {
   handleDownloadCsv = async () => {
     try {
       const resp = await fetch(
-        `${process.env.REACT_APP_API_URL}/api/profile/${this.props.user._id}/experiences/CSV`
+        `${process.env.REACT_APP_API_URL}/api/profile/${this.props.user.id}/experiences/CSV`
       );
       console.log(resp);
     } catch (error) {
@@ -27,9 +27,11 @@ class EducationComponent extends React.Component {
   handleDownloadPdf = async () => {
     try {
       const resp = await fetch(
-        `${process.env.REACT_APP_API_URL}/api/profile/${this.props.user._id}/CV`
+        `${process.env.REACT_APP_API_URL}/api/profile/${this.props.user.id}/CV`
       );
 
+
+      
       console.log(resp);
     } catch (error) {
       console.log(error);
@@ -37,22 +39,22 @@ class EducationComponent extends React.Component {
   };
   fetchExperiences = async (id) => {
     const resp = await fetch(
-      `${process.env.REACT_APP_API_URL}/api/profile/${id}/experiences`
-    );
+			`${process.env.REACT_APP_API_URL}/experience/${id}`
+		)
     const exp = await resp.json();
-    console.log(exp);
-    this.setState({ experiences: exp.data });
+    this.setState({ experiences: exp });
   };
 
   componentDidMount = () => {
-    if (this.props.user._id) this.fetchExperiences(this.props.user._id);
+    if (this.props.user.id) this.fetchExperiences(this.props.user.id);
+    console.log(this.props.user.id + "userid")
   };
 
   componentDidUpdate = (prevProps, prevState) => {
-    console.log(this.props.user);
+    console.log(this.props.user + "props user");
 
-    if (prevProps.user._id !== this.props.user._id) {
-      this.fetchExperiences(this.props.user._id);
+    if (prevProps.user.id !== this.props.user.id) {
+      this.fetchExperiences(this.props.user.id);
     }
   };
 

@@ -34,7 +34,7 @@ class PersonalDetails extends React.Component {
       this.state.profilePic.name
     );
     const resp = await fetch(
-      `${process.env.REACT_APP_API_URL}/api/profile/${this.props.user._id}/picture`,
+      `${process.env.REACT_APP_API_URL}/api/profile/${this.props.user.id}/picture`,
       {
         method: 'POST',
 
@@ -58,6 +58,7 @@ class PersonalDetails extends React.Component {
     if (prevState.profilePic !== this.state.profilePic) {
       this.uploadFile();
     }
+    console.log(this.props.user.image)
   };
 
   render() {

@@ -28,7 +28,7 @@ const EditDetailsModal = ({
   const handleSubmit = async (e) => {
     e.preventDefault();
     const resp = await fetch(
-      `${process.env.REACT_APP_API_URL}/api/profile/${_id}`,
+      `${process.env.REACT_APP_API_URL}/profile/1`,
       {
         method: 'PUT',
         body: JSON.stringify(fields),

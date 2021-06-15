@@ -12,35 +12,31 @@ import Register from 'components/Pages/registration/Register';
 // import NavBar from './components/NavBar';
 
 export default class App extends Component {
-  // state = {
-  //   userLoggedId: null
-  // }
+	state = {
+	  user: {},
+	}
 
-  // fetchUser(id) => {
-  //   fetch
-  //   setState(id)
-  // }
 
-  render() {
-    return (
-      <Router>
-        <Switch>
-          <Route path='/' exact component={Landing} />
-          <Route path='/login' exact component={Login} />
-          <Route path='/register' exact component={Register} />
-          <Route path='/newsfeed'>
-            <NewsFeed>
-              <TempNavBar />
-            </NewsFeed>
-          </Route>
-          <Route path='/profile/:id'>
-            <Home>
-              <TempNavBar />
-            </Home>
-          </Route>
-        </Switch>
-        <Footer />
-      </Router>
-    );
-  }
+	render() {
+		return (
+			<Router>
+				<Switch>
+					<Route path="/" exact component={Landing} />
+					<Route path="/login" exact component={Login} />
+					<Route path="/register" exact component={Register} />
+					<Route path="/newsfeed">
+						<NewsFeed>
+							<TempNavBar />
+						</NewsFeed>
+					</Route>
+					<Route path="/profile/:id">
+						<Home>
+							<TempNavBar />
+						</Home>
+					</Route>
+				</Switch>
+				<Footer />
+			</Router>
+		)
+	}
 }

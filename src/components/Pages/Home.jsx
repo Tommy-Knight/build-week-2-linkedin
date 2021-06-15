@@ -14,15 +14,9 @@ class Home extends Component {
   };
 
   fetchUser = async (personToFetch) => {
-    const token = localStorage.getItem('token');
     this.setState({ isLoading: true });
     const resp = await fetch(
-      `${process.env.REACT_APP_API_URL}/profile/1`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
+      `${process.env.REACT_APP_API_URL}/profile/1`
     );
 
     const data = await resp.json();
