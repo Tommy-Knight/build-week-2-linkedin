@@ -58,7 +58,6 @@ class PersonalDetails extends React.Component {
     if (prevState.profilePic !== this.state.profilePic) {
       this.uploadFile();
     }
-    console.log(this.props.user.image)
   };
 
   render() {

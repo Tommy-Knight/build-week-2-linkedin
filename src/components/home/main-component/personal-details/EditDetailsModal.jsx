@@ -3,7 +3,7 @@ import { Modal, Button, Form } from 'react-bootstrap';
 
 const EditDetailsModal = ({
   children,
-  user: { name, title, surname, area, email, bio, _id },
+  user: { name, title, surname, area, email, bio, id },
   fetchUser,
 }) => {
   const [show, setShow] = useState(false);

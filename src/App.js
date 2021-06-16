@@ -16,7 +16,6 @@ export default class App extends Component {
 	  user: {},
 	}
 
-
 	render() {
 		return (
 			<Router>

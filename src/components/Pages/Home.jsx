@@ -9,14 +9,14 @@ class Home extends Component {
     user: {},
     isLoading: true,
     // userLogged: null,
-    // experiences: [],
+    experiences: [],
     isUnauthorized: false,
   };
 
-  fetchUser = async (personToFetch) => {
+  fetchUser = async (id) => {
     this.setState({ isLoading: true });
     const resp = await fetch(
-      `${process.env.REACT_APP_API_URL}/profile/1`
+      `${process.env.REACT_APP_API_URL}/profile/${id}`
     );
 
     const data = await resp.json();

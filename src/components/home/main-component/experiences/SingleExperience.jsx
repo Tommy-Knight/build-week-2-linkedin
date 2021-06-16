@@ -16,7 +16,7 @@ const SingleExperience = ({
   startDate,
   endDate,
   location,
-  _id,
+  id,
   userID,
   fetchExperiences,
 }) => {
@@ -50,11 +50,11 @@ const SingleExperience = ({
           </p>
         )}
         {description && <p className='m-0'>Description: {description}</p>}
-
+          
         {location.pathname === '/profile/me' && (
           <div>
             <CustomModal
-              expID={_id}
+              expID={id}
               userID={userID}
               method='PUT'
               fetchExperiences={fetchExperiences}

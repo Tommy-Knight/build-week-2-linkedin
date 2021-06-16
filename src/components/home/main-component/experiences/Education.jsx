@@ -29,32 +29,34 @@ class EducationComponent extends React.Component {
       const resp = await fetch(
         `${process.env.REACT_APP_API_URL}/api/profile/${this.props.user.id}/CV`
       );
-
-
       
       console.log(resp);
     } catch (error) {
       console.log(error);
     }
   };
+
   fetchExperiences = async (id) => {
     const resp = await fetch(
-			`${process.env.REACT_APP_API_URL}/experience/${id}`
+			`${process.env.REACT_APP_API_URL}/experience/`
 		)
     const exp = await resp.json();
-    this.setState({ experiences: exp });
+    console.log('!!!!!', exp.username)
+    console.log(`props${this.props.user.id}`)
+    this.setState({ experiences: exp })
   };
 
   componentDidMount = () => {
-    if (this.props.user.id) this.fetchExperiences(this.props.user.id);
-    console.log(this.props.user.id + "userid")
+    // if (this.props.user.id) this.fetchExperiences(this.props.user.id);
+    // console.log(this.props.user.id + "userid")
   };
 
+
   componentDidUpdate = (prevProps, prevState) => {
-    console.log(this.props.user + "props user");
 
     if (prevProps.user.id !== this.props.user.id) {
       this.fetchExperiences(this.props.user.id);
+
     }
   };
 
@@ -92,17 +94,20 @@ class EducationComponent extends React.Component {
           </FlexColRow>
           <FlexColRow>
             <ul className='p-0'>
-              {this.state.experiences.length > 0 &&
+              {this.state.experiences &&
                 this.state.experiences
                   .slice()
                   .reverse()
                   .map((exp) => (
+                    <>
                     <SingleExperience
-                      key={exp._id}
+                      key={exp.id}
                       fetchExperiences={this.fetchExperiences}
-                      userID={this.props.user._id}
+                      userID={this.props.user.id}
                       {...exp}
                     />
+                    <hr/>
+                    </>
                   ))}
             </ul>
           </FlexColRow>
@@ -121,8 +126,8 @@ const StyledContainer = styled(Container)`
   padding: 0 0 24px;
 `;
 const StyledDiv = styled.div`
-  border-bottom: 1px solid grey;
-  padding-bottom: 24px;
+  // border-bottom: 1px solid grey;
+  // padding-bottom: 24px;
 `;
 // const HeroImage = styled(Image)`
 //   background-image: url(https://i.stack.imgur.com/y9DpT.jpg);

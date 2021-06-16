@@ -58,9 +58,9 @@ const CreateModal = (props) => {
     setSuccessMsg('');
     setLoading(true);
     if (props.method === 'POST') {
-      const resp = await fetch(`${process.env.REACT_APP_API_URL}/api/posts/`, {
+      const resp = await fetch(`${process.env.REACT_APP_API_URL}/posts/`, {
         method: 'POST',
-        body: JSON.stringify({ text, profileId: props.userLogged._id }),
+        body: JSON.stringify({ text, profileId: props.userLogged.id }),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -69,7 +69,7 @@ const CreateModal = (props) => {
       const data = await resp.json();
 
       if (picture) {
-        await uploadPic(data._id);
+        await uploadPic(data.id);
       }
 
       // console.log(resp);
@@ -81,7 +81,7 @@ const CreateModal = (props) => {
       }
     } else {
       const resp = await fetch(
-        `${process.env.REACT_APP_API_URL}/api/posts/${props.post._id}`,
+        `${process.env.REACT_APP_API_URL}/api/posts/${props.post.id}`,
         {
           method: 'PUT',
           body: JSON.stringify({ text }),
@@ -94,7 +94,7 @@ const CreateModal = (props) => {
       const data = await resp.json();
 
       if (picture) {
-        await uploadPic(data._id);
+        await uploadPic(data.id);
       }
 
       // console.log(resp);

@@ -25,7 +25,7 @@ export default class CommentList extends Component {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             comment: this.state.comment,
-            userWhoCommented: this.props.userLogged._id,
+            userWhoCommented: this.props.userLogged.id,
           }),
         }
       );
@@ -73,7 +73,7 @@ export default class CommentList extends Component {
         </form>
         <ListGroup className='pb-4'>
           {this.state.comments.map((comment) => (
-            <ListGroupItem key={comment._id}>
+            <ListGroupItem key={comment.id}>
               <div className='d-flex align-items-center'>
                 <img
                   alt='hi'

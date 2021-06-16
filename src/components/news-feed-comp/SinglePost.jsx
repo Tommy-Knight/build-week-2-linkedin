@@ -31,10 +31,10 @@ export default class SinglePost extends Component {
   };
 
   handleDeletePost = async () => {
-    if (this.props.userLogged._id === this.props.post.profile._id) {
+    if (this.props.userLogged.id === this.props.post.profile.id) {
       // this.setState({ isLoading: true });
       const resp = await fetch(
-        `${process.env.REACT_APP_API_URL}/api/posts/${this.props.post._id}`,
+        `${process.env.REACT_APP_API_URL}/api/posts/${this.props.post.id}`,
         {
           method: 'DELETE',
         }
@@ -51,7 +51,7 @@ export default class SinglePost extends Component {
   };
 
   handleEdit = () => {
-    if (this.props.userLogged._id === this.props.post.profile._id) {
+    if (this.props.userLogged.id === this.props.post.profile.id) {
       this.setState({ editMode: !this.state.editMode });
     } else {
       alert('non puoi toccare i post degli altri 💩');
@@ -70,7 +70,7 @@ export default class SinglePost extends Component {
     const text = this.state.text;
     console.log('puttttinnnnn');
     const resp = await fetch(
-      `${process.env.REACT_APP_API_URL}/api/posts/${this.props.post._id}`,
+      `${process.env.REACT_APP_API_URL}/api/posts/${this.props.post.id}`,
       {
         method: 'PUT',
         body: JSON.stringify({ text }),
@@ -107,7 +107,7 @@ export default class SinglePost extends Component {
                 ' ' +
                 this.props.post.profile.surname}
             </span>
-            {this.props.userLogged?._id === this.props.post.profile._id && (
+            {this.props.userLogged?.id === this.props.post.profile.id && (
               <div className='d-flex align-items-center  ml-auto'>
                 <div>
                   <BsFillTrashFill
@@ -178,7 +178,7 @@ export default class SinglePost extends Component {
 
           <CommentList
             userLogged={this.props.userLogged}
-            postId={this.props.post._id}
+            postId={this.props.post.id}
           />
         </Card>
       </Col>

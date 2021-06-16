@@ -37,7 +37,6 @@ class Login extends Component {
       console.log(resp)
       const data = await resp.json();
       if (resp.ok) {
-        localStorage.setItem('token', data.token);
         this.setState({ loading: false });
         this.props.history.push('/newsfeed');
       } else {

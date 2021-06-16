@@ -57,7 +57,7 @@ const CustomModal = ({
   const postExperience = async (newExp) => {
     setLoading(true);
     const resp = await fetch(
-      `${process.env.REACT_APP_API_URL}/api/profile/${user._id}/experiences`,
+      `${process.env.REACT_APP_API_URL}/api/profile/${user.id}/experiences`,
       {
         method: 'POST',
         body: JSON.stringify(newExp),
@@ -73,11 +73,11 @@ const CustomModal = ({
     console.log(body);
     // aspetto che finisca di caricare e poi fetcho
     if (expPic) {
-      await uploadPic(body.profileId, body._id);
-      fetchExperiences(user._id);
+      await uploadPic(body.profileId, body.id);
+      fetchExperiences(user.id);
       setExpPic(null);
     } else {
-      fetchExperiences(user._id);
+      fetchExperiences(user.id);
     }
   };
 
@@ -98,7 +98,7 @@ const CustomModal = ({
     console.log(body);
 
     if (expPic) {
-      await uploadPic(body.profileId, body._id);
+      await uploadPic(body.profileId, body.id);
       fetchExperiences(body.profileId);
       setExpPic(null);
     } else {

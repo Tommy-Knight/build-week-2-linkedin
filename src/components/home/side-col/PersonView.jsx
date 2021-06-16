@@ -2,7 +2,7 @@ import { Col, Image, Button, Row } from 'react-bootstrap';
 import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 
-const PersonView = ({ _id, name, surname, title, image, idx, history }) => {
+const PersonView = ({ id, name, surname, title, image, idx, history }) => {
   const replaceBrokenImg = (e) => {
     console.log('img src not fount, dont worrie, got a fallback :)');
     e.target.src = `https://picsum.photos/100/100?random=${Math.ceil(
@@ -12,7 +12,7 @@ const PersonView = ({ _id, name, surname, title, image, idx, history }) => {
 
   const handleClick = () => {
     // console.log(history);
-    history.push(`/profile/${_id}`);
+    history.push(`/profile/${id}`);
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
