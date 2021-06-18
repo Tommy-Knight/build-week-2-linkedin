@@ -31,18 +31,17 @@ export default class SinglePost extends Component {
   };
 
   handleDeletePost = async () => {
-    if (this.props.userLogged.id === this.props.post.profile.id) {
-      // this.setState({ isLoading: true });
+    if (this.props.userLogged.id === this.props.post.userId) {
+      this.setState({ isLoading: true });
       const resp = await fetch(
-        `${process.env.REACT_APP_API_URL}/api/posts/${this.props.post.id}`,
+        `${process.env.REACT_APP_API_URL}/posts/${this.props.post.id}`,
         {
           method: 'DELETE',
         }
       );
       // console.log(resp);
-      // this.setState({ isLoading: false });
+      this.setState({ isLoading: false });
       if (!resp.ok) {
-        // console.log(resp);
       }
       this.props.getPosts();
     } else {
@@ -51,7 +50,7 @@ export default class SinglePost extends Component {
   };
 
   handleEdit = () => {
-    if (this.props.userLogged.id === this.props.post.profile.id) {
+    if (this.props.userLogged.id) {
       this.setState({ editMode: !this.state.editMode });
     } else {
       alert('non puoi toccare i post degli altri 💩');
@@ -68,7 +67,6 @@ export default class SinglePost extends Component {
     // }
 
     const text = this.state.text;
-    console.log('puttttinnnnn');
     const resp = await fetch(
       `${process.env.REACT_APP_API_URL}/api/posts/${this.props.post.id}`,
       {
@@ -88,7 +86,7 @@ export default class SinglePost extends Component {
 
   render() {
     // console.log(this.props.userLogged);
-    console.log(this.props.post);
+    console.log(this.props.post + "!!");
 
     return (
       <Col xs={12} className='mt-3 px-0'>
@@ -98,16 +96,16 @@ export default class SinglePost extends Component {
               alt='hi'
               style={{ width: '70px', height: '70px' }}
               roundedCircle
-              src={this.props.post.profile.image}
-            />{' '}
+              src={this.props.post.user.profiles[0].image}
+            />
             <span className='font-weight-bold ml-3'>
               {' '}
               by{' '}
-              {this.props.post.profile.name +
+              {this.props.post.user.profiles[0].name +
                 ' ' +
-                this.props.post.profile.surname}
+                this.props.post.user.profiles[0].surname}
             </span>
-            {this.props.userLogged?.id === this.props.post.profile.id && (
+            {this.props.userLogged?.id === this.props.post.userId && (
               <div className='d-flex align-items-center  ml-auto'>
                 <div>
                   <BsFillTrashFill
@@ -130,9 +128,9 @@ export default class SinglePost extends Component {
               </div>
             )}
           </div>
-          <p>{`created at ${format(
+          <p>{`created on ${format(
             parseISO(this.props.post.createdAt),
-            'yyyy-MMM-dd | HH:mm'
+            'dd-MMM-yyyy | HH:mm'
           )}`}</p>
           <textarea
             style={{
@@ -178,7 +176,7 @@ export default class SinglePost extends Component {
 
           <CommentList
             userLogged={this.props.userLogged}
-            postId={this.props.post.id}
+            post={this.props.post}
           />
         </Card>
       </Col>

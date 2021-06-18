@@ -76,7 +76,7 @@ class PersonalDetails extends React.Component {
                     src={this.props.user.image}
                   />
                 )}
-                {this.props.location.pathname === '/profile/me' && (
+                {this.props.location.pathname === '/profile/1' && (
                   <>
                     <input
                       onChange={this.fileSelectHandler}
@@ -95,7 +95,7 @@ class PersonalDetails extends React.Component {
               </div>
 
               {/* show pencil to edit only on my profile */}
-              {this.props.location.pathname === '/profile/me' && (
+              {this.props.location.pathname === '/profile/1' && (
                 <EditDetailsModal
                   fetchUser={this.props.fetchUser}
                   user={this.props.user}

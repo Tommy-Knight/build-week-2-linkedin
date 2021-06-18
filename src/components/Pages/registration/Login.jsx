@@ -23,16 +23,6 @@ class Login extends Component {
       this.setState({ loading: true });
       const resp = await fetch(
         `${process.env.REACT_APP_API_URL}/user`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email: this.state.email,
-            password: this.state.password,
-          }),
-        }
       )
       console.log(resp)
       const data = await resp.json();

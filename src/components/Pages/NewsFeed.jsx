@@ -11,24 +11,6 @@ export default class NewsFeed extends Component {
     posts: [],
     userLogged: null,
   };
-
-  getPosts = async () => {
-    this.setState({ isLoading: true });
-    try {
-      const resp = await fetch(`${process.env.REACT_APP_API_URL}/api/posts`);
-      const posts = await resp.json();
-
-      console.log(posts);
-      this.setState({ posts });
-      this.setState({ isLoading: false });
-    } catch (error) {
-      console.log(error);
-      this.setState({ isLoading: false });
-    }
-  };
-
-
-
   getUser = async () => {
     const resp = await fetch(
       `${process.env.REACT_APP_API_URL}/profile/1`
@@ -38,18 +20,26 @@ export default class NewsFeed extends Component {
     console.log('user logged: ', userLogged);
   };
 
-  componentDidMount = () => {
-    this.getPosts();
-    this.getUser();
+  getPosts = async () => {
+    this.setState({ isLoading: true });
+    try {
+      const resp = await fetch(`${process.env.REACT_APP_API_URL}/posts`);
+      const posts = await resp.json();
+      this.setState({ posts });
+      this.setState({ isLoading: false });
+    } catch (error) {
+      console.log(error);
+      this.setState({ isLoading: false });
+    }
   };
 
-  // componentDidUpdate = (prevProps, prevState) => {
-  //   if (prevState.posts !== this.state.posts) {
+  componentDidMount = () => {
+    this.getUser();
+    this.getPosts();
+  };
 
-  //   }
-  // };
   componentDidUpdate = () => {
-    console.log(this.state.posts);
+    console.log("posts : ", this.state.posts);
   };
 
   render() {
@@ -68,6 +58,7 @@ export default class NewsFeed extends Component {
               <CreatePost
                 userLogged={this.state.userLogged}
                 getPosts={this.getPosts}
+                pro
               />
               <PostList
                 posts={this.state.posts}

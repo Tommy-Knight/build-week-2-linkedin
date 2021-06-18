@@ -28,7 +28,7 @@ export default class CreatePost extends Component {
               >
                 Start a post
               </Button>{' '}
-            </CreateModal>
+            </CreateModal >
           </div>
         </Col>
         <Col xs={12} className='mt-3'>
